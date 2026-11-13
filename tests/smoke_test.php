@@ -1,18 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Automated end-to-end checks for the lab (section 8.1, step 8).
- *
- * Usage (server must already be running, database loaded):
- *     php tests/smoke_test.php [base_url]
- *     php tests/smoke_test.php http://127.0.0.1:8000
- *
- * Uses the same DB settings as the app (config/config.php: env vars or config/local.php).
- * It creates one throw-away user per run (random name, example.test email).
- * Re-import database/schema.sql to reset the data afterwards.
- */
-
 $root = dirname(__DIR__);
 $config = require $root . '/config/config.php';
 $base = rtrim($argv[1] ?? 'http://127.0.0.1:8000', '/');
@@ -33,7 +21,6 @@ function check(string $name, bool $ok, string $detail = ''): void
     printf("  [%s] %s%s\n", $ok ? 'PASS' : 'FAIL', $name, (!$ok && $detail !== '') ? "  -> $detail" : '');
 }
 
-/** Tiny HTTP client with its own cookie jar (= one browser). */
 final class Browser
 {
     private string $jar;
