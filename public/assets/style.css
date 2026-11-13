@@ -1,0 +1,41 @@
+:root { --border: #d0d7de; --muted: #57606a; --accent: #0b5cad; --bg: #f6f8fa; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1f2328; background: #fff; }
+a { color: var(--accent); }
+.site-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .75rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--border); }
+.site-header nav { display: flex; align-items: center; gap: .75rem; }
+.brand { font-weight: 700; text-decoration: none; color: inherit; }
+main { max-width: 52rem; margin: 0 auto; padding: 1.25rem; }
+.inline-form { display: inline; margin: 0; }
+button { font: inherit; padding: .3rem .8rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; cursor: pointer; }
+button:hover, button:focus-visible { background: var(--bg); }
+button[type="submit"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.flash { padding: .6rem .9rem; border-radius: 6px; border: 1px solid var(--border); }
+.flash-success { background: #dafbe1; border-color: #4ac26b; }
+.flash-error { background: #ffebe9; border-color: #ff8182; }
+.meta { color: var(--muted); font-size: .9rem; }
+.avatar { border-radius: 50%; vertical-align: middle; background: var(--bg); }
+.discussion .body { white-space: pre-wrap; }
+.discussion-list { list-style: none; padding: 0; }
+.discussion-list li { padding: .6rem 0; border-bottom: 1px solid var(--border); }
+.discussion-list .meta { display: block; }
+
+/* Comment tree */
+.comments, .replies { list-style: none; margin: 0; padding: 0; }
+.comment { margin: .6rem 0; }
+.comment > article { border: 1px solid var(--border); border-radius: 8px; padding: .6rem .8rem; background: #fff; }
+/* One step of indentation per level, but only for depth 1..8 (the JS-free "cap").
+   Depth 9+ gets no extra margin, yet still shows its true "Depth N" label. */
+.comment.indented { margin-left: 1.5rem; }
+.comment-head { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-size: .9rem; }
+.depth-label { background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 0 .5rem; font-size: .8rem; color: var(--muted); }
+.comment-body { margin: .4rem 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.comment-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .75rem; font-size: .9rem; }
+.reply-box summary { cursor: pointer; color: var(--accent); }
+.reply-box form, .new-comment form { margin-top: .5rem; }
+textarea, input[type="text"], input[type="email"], input[type="password"] { width: 100%; font: inherit; padding: .4rem .5rem; border: 1px solid var(--border); border-radius: 6px; }
+label { display: block; font-weight: 600; margin: .6rem 0 .2rem; }
+.auth-form { max-width: 24rem; }
+.auth-form button { margin-top: .8rem; }
+.new-comment button { margin-top: .5rem; }

@@ -1,0 +1,43 @@
+<p><a href="{{home_url}}">&larr; All discussions</a></p>
+
+<article class="discussion">
+    <h1>{{discussion.title}}</h1>
+    <p class="meta">
+        <img class="avatar" src="{{discussion.avatar_url}}" alt="" width="32" height="32">
+        by <strong>{{discussion.author}}</strong> &middot;
+        <time datetime="{{discussion.iso}}">{{discussion.created_at}}</time>
+    </p>
+    <p class="body">{{discussion.body}}</p>
+</article>
+
+<section aria-labelledby="replies-heading">
+    <h2 id="replies-heading">Comments</h2>
+
+    {{#has_comments}}
+    <ul class="comments">
+        {{#comments}}{{> comment}}{{/comments}}
+    </ul>
+    {{/has_comments}}
+    {{^has_comments}}
+    <p>No comments yet.</p>
+    {{/has_comments}}
+
+    {{#truncated}}
+    <p class="flash flash-error">Some replies are not shown because this thread is very large.</p>
+    {{/truncated}}
+</section>
+
+<section class="new-comment" aria-labelledby="new-comment-heading">
+    <h2 id="new-comment-heading">Post a top-level comment</h2>
+    {{#logged_in}}
+    <form method="post" action="{{post_url}}">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+        <label for="new-comment-body">Your comment</label>
+        <textarea id="new-comment-body" name="body" rows="4" maxlength="{{max_chars}}" required></textarea>
+        <button type="submit">Post comment</button>
+    </form>
+    {{/logged_in}}
+    {{^logged_in}}
+    <p><a href="{{login_url}}">Log in</a> or <a href="{{register_url}}">register</a> to post a comment.</p>
+    {{/logged_in}}
+</section>

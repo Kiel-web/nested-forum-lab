@@ -1,0 +1,14 @@
+<h1>Discussions</h1>
+{{#has_discussions}}
+<ul class="discussion-list">
+    {{#discussions}}
+    <li>
+        <a href="{{url}}">{{title}}</a>
+        <span class="meta">by {{author}} &middot; {{comment_count}} comments &middot; {{created_at}}</span>
+    </li>
+    {{/discussions}}
+</ul>
+{{/has_discussions}}
+{{^has_discussions}}
+<p>No discussions yet.</p>
+{{/has_discussions}}

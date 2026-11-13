@@ -1,0 +1,36 @@
+<li class="comment{{#indent}} indented{{/indent}}" id="comment-{{id}}" data-depth="{{depth}}">
+    <article>
+        <header class="comment-head">
+            <img class="avatar" src="{{avatar_url}}" alt="" width="32" height="32">
+            <strong class="author">{{author}}</strong>
+            <span class="depth-label">Depth {{depth}}</span>
+            <time datetime="{{iso}}">{{created_at}}</time>
+        </header>
+        <p class="comment-body">{{body}}</p>
+        <div class="comment-actions">
+            {{#logged_in}}
+            <details class="reply-box">
+                <summary>Reply</summary>
+                <form method="post" action="{{post_url}}">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <input type="hidden" name="parent_id" value="{{id}}">
+                    <label for="reply-body-{{id}}">Your reply to {{author}}</label>
+                    <textarea id="reply-body-{{id}}" name="body" rows="3" maxlength="{{max_chars}}" required></textarea>
+                    <button type="submit">Post reply</button>
+                </form>
+            </details>
+            {{/logged_in}}
+            {{^logged_in}}
+            <a href="{{login_url}}">Log in to reply</a>
+            {{/logged_in}}
+            {{#has_children}}
+            <button type="button" class="toggle-replies" hidden aria-controls="{{replies_id}}" aria-expanded="true">Hide replies</button>
+            {{/has_children}}
+        </div>
+    </article>
+    {{#has_children}}
+    <ul class="replies" id="{{replies_id}}">
+        {{#children}}{{> comment}}{{/children}}
+    </ul>
+    {{/has_children}}
+</li>

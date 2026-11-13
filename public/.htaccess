@@ -1,0 +1,6 @@
+# Apache (e.g. XAMPP): send every URL that is not a real file to the front controller.
+# Not needed when using PHP's built-in server (php -S) as described in the README.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]

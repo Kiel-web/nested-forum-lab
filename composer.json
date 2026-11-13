@@ -1,0 +1,24 @@
+{
+    "name": "student/nested-forum-lab",
+    "description": "Nested forum replies lab (PHP 8.2+, PDO, Bramus Router, Mustache)",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "bramus/router": "^1.6",
+        "mustache/mustache": "^2.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S localhost:8000 -t public"
+        ],
+        "test": "php tests/smoke_test.php http://localhost:8000"
+    }
+}
